@@ -12,11 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class Service2Application {
 
-    private final DepService depService;
 
-    public Service2Application(DepService depService) {
-        this.depService = depService;
-    }
+
 
     public static void main(String[] args) {
 		SpringApplication.run(Service2Application.class, args);
@@ -25,6 +22,6 @@ public class Service2Application {
 	@GetMapping ("/api")
 	public ResponseEntity<?> findDepartment(){
 		log.debug("find department");
-		return ResponseEntity.ok(depService.findDepartment());
+		return ResponseEntity.ok("Development");
 	}
 }

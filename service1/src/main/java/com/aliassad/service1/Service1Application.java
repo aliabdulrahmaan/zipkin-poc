@@ -1,11 +1,11 @@
 package com.aliassad.service1;
 
+import com.aliassad.service1.domain.Employee;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import org.springframework.boot.web.servlet.ServletComponentScan;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,23 +27,15 @@ public class Service1Application {
 		SpringApplication.run(Service1Application.class, args);
 	}
 
-	@PostMapping("/api")
+	@PostMapping("/api/employee")
 	public ResponseEntity<?> findEmployee(){
-log.debug("find employee");
+        log.debug("find employee");
 		Employee e = new Employee(1l,"Ali Assad");
 		ResponseEntity<String> response = restTemplate.getForEntity("http://localhost:8080/api",String.class);
 		e.setDepartment(response.getBody());
 		return ResponseEntity.ok(e);
 }
 
-//	@Bean
-//	public RestTemplate getRestTemplate() {
-//		return new RestTemplate();
-//	}
 
-//	@Bean
-//	public AlwaysSampler defaultSampler() {
-//		return new AlwaysSampler();
-//	}
 
 }
