@@ -1,0 +1,17 @@
+spring:
+  zipkin:
+    enabled: true
+    service.name: service1
+    sender.type: web
+    base-url: http://localhost:9411
+  sleuth:
+    enabled: true
+    sampler:
+      probability: 1.0
+
+  application:
+    name: service1
+server:
+  port: 9090
+
+debug: true
