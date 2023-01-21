@@ -49,7 +49,7 @@ docker-compose -f docker-compose-slim.yml -f docker-compose-elasticsearch.yml up
 # In another terminal use this command to send a person to api and see the logs
 
 curl -X 'POST' \
-  'http://localhost:9090/api' \
+  'http://localhost:9090/api/employee' \
   -H 'accept: */*' \
   -d ''
 

@@ -1,4 +1,4 @@
-package com.aliassad.service1;
+package com.aliassad.service1.domain;
 
 public class Employee {
 
