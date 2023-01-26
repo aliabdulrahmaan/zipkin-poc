@@ -4,14 +4,16 @@ public class Employee {
 
     private long id;
     private String name;
-    private String department;
+    private Integer departmentId;
+
+    private Department department;
 
     public Employee(long id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public Employee(long id, String name, String department) {
+    public Employee(long id, String name, Department department) {
         this.id = id;
         this.name = name;
         this.department = department;
@@ -33,11 +35,31 @@ public class Employee {
         this.name = name;
     }
 
-    public String getDepartment() {
+
+    public Integer getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(Integer departmentId) {
+        this.departmentId = departmentId;
+    }
+
+    public Department getDepartment() {
         return department;
     }
 
-    public void setDepartment(String department) {
+    public void setDepartment(Department department) {
         this.department = department;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", departmentId=" + departmentId +
+                ", department=" + department +
+                '}';
     }
 }
