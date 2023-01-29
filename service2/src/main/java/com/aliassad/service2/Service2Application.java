@@ -1,13 +1,14 @@
 package com.aliassad.service2;
 
 import com.aliassad.service2.domain.Department;
+import com.aliassad.service2.domain.Employee;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.EnumMap;
 import java.util.HashMap;
@@ -18,7 +19,9 @@ import java.util.Map;
 @RestController
 public class Service2Application {
 
-
+	@Autowired
+//	@Qualifier("analysisServiceJmsTemplate")
+	JmsTemplate analysisServiceJmsTemplate;
 private final Map<Integer, Department> map= new HashMap<>();
 
 private final Map<Integer,Department> departments= new HashMap<>();
@@ -33,8 +36,16 @@ public Service2Application(){
 	@GetMapping ("/api/{id}")
 	public ResponseEntity<?> findDepartment(@PathVariable int id){
     	log.info("find department {}",id);
-		Department result= map.get(id);
+		Department result= departments.get(id);
 		log.info("response - department {}",result);
+		sendMessage(new Employee(1,"aliassad"));
 		return ResponseEntity.ok(result);
+	}
+
+
+	public void sendMessage( Employee employee){
+
+		analysisServiceJmsTemplate.convertAndSend("analytics",employee);
+
 	}
 }
