@@ -1,11 +1,14 @@
 package com.aliassad.service2.domain;
 
-public class Department {
+import java.io.Serializable;
+
+public class Department implements Serializable {
 
     private long id;
     private String name;
 
-
+    public Department() {
+    }
     public Department(long id, String name) {
         this.id = id;
         this.name = name;

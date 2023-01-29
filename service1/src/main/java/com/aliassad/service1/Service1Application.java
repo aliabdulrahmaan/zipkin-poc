@@ -39,7 +39,7 @@ public class Service1Application {
 	public ResponseEntity<?> findEmployee(@RequestBody EmployeeDTO employeeDTO){
         log.info("find employee by {}",employeeDTO);
 		Employee e = employees.get(employeeDTO.getEmpId());
-		ResponseEntity<Department> response = restTemplate.getForEntity("http://localhost:8080/api/"+employeeDTO.getDepId(),Department.class);
+		ResponseEntity<Department> response = restTemplate.getForEntity("http://localhost:7070/api/"+employeeDTO.getDepId(),Department.class);
 		e.setDepartment(response.getBody());
 		log.info("Response - employee by {}",employeeDTO);
 		return ResponseEntity.ok(e);

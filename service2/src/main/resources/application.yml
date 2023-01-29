@@ -13,4 +13,6 @@ spring:
     name: service2
 
 
-debug: true
+server:
+  port: 7070
+

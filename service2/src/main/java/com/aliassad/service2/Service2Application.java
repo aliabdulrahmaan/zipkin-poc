@@ -18,9 +18,6 @@ import java.util.Map;
 @RestController
 public class Service2Application {
 
-
-private final Map<Integer, Department> map= new HashMap<>();
-
 private final Map<Integer,Department> departments= new HashMap<>();
 public Service2Application(){
 	departments.put(1,new Department(1l,"Development"));
@@ -33,7 +30,7 @@ public Service2Application(){
 	@GetMapping ("/api/{id}")
 	public ResponseEntity<?> findDepartment(@PathVariable int id){
     	log.info("find department {}",id);
-		Department result= map.get(id);
+		Department result= departments.get(id);
 		log.info("response - department {}",result);
 		return ResponseEntity.ok(result);
 	}
